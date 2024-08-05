@@ -1,0 +1,50 @@
+Basic commands:
+scp -P 4242 level0@192.168.1.96:/home/user/level0/level0 .
+sudo openvpn --config <path-to-file.ovpn>
+
+Bruteforce web directories:
+gobuster dir -w <wordlist> -u <ip/url>
+For DNS:
+gobuster vhost -w <wordlist> -u <ip/url>
+
+Ports infos:
+https://www.speedguide.net/port.php?port=3389
+
+SQL cheat sheet:
+https://www.mysqltutorial.org/mysql-cheat-sheet/
+
+To analyze webpage used techs:
+https://www.wappalyzer.com/apps/
+
+Lists of hacking methods:
+https://book.hacktricks.xyz/windows-hardening/ntlm/places-to-steal-ntlm-creds
+
+To catch requests and manipulate requests, Burp Suite.
+
+Password spraying:
+hydra -L usernames.txt -p '<password you want to test on the list of user>' <ip> ssh
+
+To see all open ports in a machine and the app using them:
+ss
+-p (for services)
+-t (TCP sockets)
+-l (for only listening sockets)
+-n (no services)
+
+To make a LOCAL port forwarding (in case the machine you entered doesn't have all programs needed)
+ssh -L <port local machine>:localhost:<port you want to interact with> <username>@<target ip>
+ssh -L 1234:localhost:5432 christine@162.34.6.89
+Will create:
+MY MACHINE:1234 <===> 22:SERVER OF CHRISTINE <=localhost/port forwarding=> 5432:postgresql
+We can use -fN to not open a full shell nor execute anything on the targeted machine.
+
+WINDOWS:
+File inclusion paths:
+https://github.com/carlospolop/Auto_Wordlists/blob/main/wordlists/file_inclusion_windows.txt
+/mnt/c/Windows/System32/drivers/etc/hosts host file windows
+
+POSTGRESQL:
+\l for listing databases
+\c <name of db> to connect to a db
+\dt to list the database tables
+SELECT * FROM <table>; to show its content

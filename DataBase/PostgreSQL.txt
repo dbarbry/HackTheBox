@@ -1,0 +1,15 @@
+To install psql:
+sudo apt install psql
+
+To connect to the postgresql server:
+if port forwarding is used we can use the -h with localhost instead of an ip
+psql -U <username> -h localhost -p <port>
+
+To list the existing database:
+> \l
+To connect to a specific database:
+> \c <name>
+To list the database table we are in:
+> \dt
+Then to print, we use the classic:
+> SELECT * FROM <table_name>;

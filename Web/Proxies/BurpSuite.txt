@@ -1,0 +1,4 @@
+Burpsuite is a tool to make requests and other things easier.
+It has in the Proxy section an Intercept tool to get the request we sent.
+Then we can use the Repeater tool to send requests with payload easier.
+We can use the Decoder tool to translate a payload into url code.

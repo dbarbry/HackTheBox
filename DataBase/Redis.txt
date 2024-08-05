@@ -1,0 +1,13 @@
+Install tools:
+sudo apt install redis-tools
+
+Can connect using:
+> redis-cli -h <ip>
+For more info inside redis:
+> info
+That will, among other infos, show you keyspaces, you can enter one doing:
+> select 0
+Then list all keys:
+> keys *
+And get a specific one:
+> get <key_name>

@@ -1,0 +1,9 @@
+Used here for file inclusion vulnerability.
+Install:
+git clone https://github.com/lgandx/Responder
+
+Check that in Responder.cong SMB is set to on
+Then lauch the exploit with:
+sudo python3 Responder.py -I tun0
+That will open a listener that will capture the request of authentication and print the password hashed.
+Now simply execute the file injection on the website and you will just have to crack the password with johntheripper for instance.

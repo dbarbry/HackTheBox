@@ -1,0 +1,15 @@
+Let's say we have postgresql running on port 5432 into a machine but do not have psql to communicate with it. In this case we need to communicate to a service with our machine that has psql.
+To find this port we can use:
+ss -tlpn
+-p (for services)
+-t (TCP sockets)
+-l (for only listening sockets)
+-n (no services)
+
+A common solution for that is port forwarding. There is two main kind of port forwarding, the local and the dynamic, let's check the local first.
+ssh -L <port local machine>:localhost:<port you want to interact with> <username>@<target ip>
+ssh -L 1234:localhost:5432 christine@162.34.6.89
+Will create:
+MY MACHINE:1234 <===> 22:SERVER OF CHRISTINE <=localhost/port forwarding=> 5432:postgresql
+We can use -fN to not open a full shell nor execute anything on the targeted machine.
+22 is for ssh.

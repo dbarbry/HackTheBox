@@ -1,0 +1,27 @@
+AUTO REDIRECT WITH IP
+
+When trying to address an ip to reach a website, you might get redirected automatically to what looks like a domain name of some sort:
+Typing "http://<ip>" redirected to "http://randomname.randomdomain"
+
+To solve this you have to add the ip address to your host file example:
+echo "10.129.128.223 unika.htb" | sudo tee -a /etc/hosts
+
+SUB DOMAIN ENUMERATION
+
+Let's say we find a website that has a certain domain name, or you find an email address that ends with a custom subdomain like ...@example.ex.
+In this case we can add in /etc/hosts the ip address on this domain name like this:
+echo "10.129.227.248 thetoppers.htb" | sudo tee -a /etc/hosts
+
+With this done we can analyze sub domains. We can analyze subdomains with gobuster (see /Web/tools/gobuster.txt)
+If finding s3.thetoppers.htb for instance, it probably means that the website uses s3 bucket for instance.
+Check "three" machine on hackthebox 
+
+VIRTUAL HOSTING
+
+This method allows the server to share separate differents resources without requiring to use the same host name for everyone of it.
+It also makes not accessible the server simply by using the IP address.
+A workaround for this is to enter the IP address and the host server the same way as with auto redirect with IP method at the beginning of the file.
+echo "<ip>     <host>.smth" | sudo tee -a /etc/hosts
+A way to find the host is to use curl as such:
+curl -v http://<ip>/
+The verbose option will print more details, among that there will be a "Location" that will show the host name or one of them.

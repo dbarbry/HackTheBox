@@ -1,0 +1,8 @@
+port analysis:
+nmap -p- -sV -sC --min-rate=1000 <ip>
+-p- for higher range of ports
+-sV for version checking !!dectection
+-Pn instead of -sV to avoid firewalls HAS TO BE USED AFTER OTHER FLAG like -sC
+-sC for script analysis !!detection
+--min-rate for reduce coast and time
+-p <port1,port2> to analyze a specific port

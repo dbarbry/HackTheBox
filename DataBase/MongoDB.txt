@@ -1,0 +1,19 @@
+Install mongodb tools:
+curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.7.tgz
+tar xvf mongodb-linux-x86_64-3.4.7.tgz
+cd mongodb-linux-x86_64-3.4.7/bin
+
+Then connect with:
+./mongo mongodb://<ip>:27017
+
+Show databases with:
+> show dbs;
+
+Select one databse:
+> use <db_name>;
+
+Show all collections (files) of this db:
+> show collections;
+
+Print with great format the content of a collection:
+> db.<collection>.find().pretty();

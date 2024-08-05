@@ -1,0 +1,19 @@
+Install:
+sudo apt install golang-go
+go install github.com/OJ/gobuster/v3@latest
+
+Usage:
+Gobuster allows us to bruteforce among a list of known web addresses all available page from an IP doing:
+gobuster dir -w </path_to_list.txt> -u <ip>
+gobuster dir --url http://<ip> --wordlist </path_to_list.txt>
+
+Lists of dir:
+https://github.com/daviddias/node-dirbuster/blob/master/lists/directory-list-2.3-small.txt
+
+Sub domain enumeration:
+gobuster vhost -w <wordlist.txt> -u http://thetoppers.htb
+
+Lists of subdomain:
+https://github.com/danielmiessler/SecLists/blob/master/Discovery/DNS/subdomains-top1million-5000.txt
+It will test all possibilities like this:
+[word].thetoppers.htb

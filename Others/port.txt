@@ -1,0 +1,84 @@
+- 21 FTP
+Check if anonymous (with nmap -sC) is accessible (Name: anonymous, pass: <no matter what>)
+ftp <ip>
+> help
+Vsftpd v.2.3.4 exploit: https://www.rapid7.com/db/modules/exploit/unix/ftp/vsftpd_234_backdoor/
+In msfconsole command do:
+> use exploit/unix/ftp/vsftpd_234_backdoor
+> set rhosts <ip>
+> run
+
+- 22 ssh
+Secured port, just ssh yk...
+
+- 23 telnet
+Can connect using:
+> telnet <ip>
+Default admin name/pass: admin, admin
+
+- 80 http
+Any http using service can be used at this port, can be accessed through web requests.
+
+- 139 && 445 SMB (Server Message Block)
+List smb service, then connect anonymously with:
+smbmap -H <ip>
+smbclient -L <Iip> -U <account_name>
+smbclient -N \\\\<ip>\\<disk> -U <account_name>
+Or using impacket if we found admin rights on the machine:
+https://github.com/fortra/impacket
+
+- 873 rsync
+Synchronization file protocol to only download the necessary information, fast and versatile, to list available share:
+rsync --list-only <ip>::
+To list the content of a share
+rsync --list-only <ip>::<share_name>
+To download a file: local_file will be created if does not exist
+rsync <ip>::<share_name>/<file_name> <local_file>
+
+- 3306 mysql
+To connect to mysql:
+mysql -h <ip> -u <username>
+SHOW databases;
+USE <db_name>;
+SHOW tables;
+SELECT * FROM <table_name>;
+
+- 3389 Microsoft Terminal Server
+Used usually on windows for Remote Desktop Protocol
+Can connect with:
+> xfreerdp /v:<ip> /cert:ignore /u:<account_name>
+
+- 5432 PostgreSQL
+Can connect with:
+psql -U <username> -h localhost -p <port>
+To list the existing database:
+> \l
+To connect to a specific database:
+> \c <name>
+To list the database table we are in:
+> \dt
+Then to print, we use the classic:
+> SELECT * FROM <table_name>;
+
+- 5985 Windows Remote Management
+Also called WinRM allows to connect to a powershell and execute commands remotely.
+Can connect with:
+evil-winrm -i <ip> -u <username> -p <password>
+
+- 6379 redis key-value store (REmote DIctionary Server)
+Can connect using:
+> redis-cli -h <ip>
+For more info inside redis:
+> info
+> select 0
+> keys *
+> get <key_name>
+
+27017 - mongodb daemon
+Can connect with:
+> ./mongo mongodb://<ip>:27017
+Show collections with:
+> show dbs;
+> use <db_name>;
+> show collections;
+> db.<collection>.find().pretty();

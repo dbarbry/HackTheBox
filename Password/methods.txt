@@ -1,0 +1,5 @@
+For password spraying:
+hydra.txt
+
+For bruteforce hash decoder:
+john.txt

@@ -1,0 +1,16 @@
+Install mysql:
+sudo apt install mysql*
+
+To connect to mysql:
+mysql -h <ip> -u <username>
+To show databases:
+SHOW databases;
+To select one database:
+USE <db_name>;
+To show table present in this db:
+SHOW tables;
+To print all elements from a table:
+SELECT * FROM <table_name>;
+
+More infos:
+https://www.mysqltutorial.org/mysql-cheat-sheet/
